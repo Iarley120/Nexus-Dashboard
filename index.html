@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nexus-Dashboard: um espaço inteligente para organizar tarefas e acompanhar o clima.">
+  <meta name="theme-color" content="#101827">
+  <title>Nexus-Dashboard — Seu dia em equilíbrio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/weather.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Barra lateral">
+      <a class="brand" href="#" aria-label="Nexus Dashboard, início">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none">
+            <path d="M10 29V11L30 29V11" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="10" cy="11" r="3" fill="currentColor"/>
+            <circle cx="30" cy="29" r="3" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <strong>NEXUS</strong>
+          <small>DASHBOARD</small>
+        </span>
+      </a>
+
+      <div class="sidebar-label">ESPAÇO DE TRABALHO</div>
+      <nav class="side-nav" aria-label="Navegação principal">
+        <a class="nav-link active" href="#inicio">
+          <span class="nav-icon" aria-hidden="true">⌂</span>
+          <span>Visão geral</span>
+        </a>
+        <a class="nav-link" href="#tarefas">
+          <span class="nav-icon" aria-hidden="true">☷</span>
+          <span>Minhas tarefas</span>
+          <span class="nav-count" id="sidebar-task-count">0</span>
+        </a>
+        <a class="nav-link" href="#clima">
+          <span class="nav-icon" aria-hidden="true">☼</span>
+          <span>Clima</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="focus-card">
+          <span class="focus-spark" aria-hidden="true">✦</span>
+          <p class="focus-title">Um passo de cada vez.</p>
+          <p class="focus-text">Pequenas tarefas também levam a grandes conquistas.</p>
+        </div>
+        <div class="profile-row">
+          <div class="avatar" aria-hidden="true">N</div>
+          <div class="profile-copy">
+            <strong>Meu espaço</strong>
+            <span>Organize sua rotina</span>
+          </div>
+          <span class="profile-dot" aria-label="Disponível"></span>
+        </div>
+      </div>
+    </aside>
+
+    <main id="conteudo-principal" class="main-content">
+      <header class="topbar" id="inicio">
+        <div class="breadcrumb">
+          <span>Workspace</span>
+          <span class="breadcrumb-slash">/</span>
+          <strong>Visão geral</strong>
+        </div>
+        <div class="topbar-right">
+          <span class="today-chip"><span class="live-dot"></span> Seu painel pessoal</span>
+          <button class="icon-button" id="theme-toggle" type="button" aria-label="Alternar tema claro e escuro" title="Alternar tema">
+            <span id="theme-icon" aria-hidden="true">☾</span>
+          </button>
+        </div>
+      </header>
+
+      <section class="welcome-section" aria-labelledby="welcome-title">
+        <div class="welcome-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> SEGUNDA-FEIRA, NOVAS POSSIBILIDADES</p>
+          <h1 id="welcome-title">Vamos fazer o dia<br><span>acontecer.</span></h1>
+          <p class="welcome-description">Seu espaço para manter o foco, cuidar do tempo e avançar no que importa.</p>
+        </div>
+        <div class="welcome-art" aria-hidden="true">
+          <div class="orb orb-one"></div>
+          <div class="orb orb-two"></div>
+          <div class="art-sun"></div>
+          <div class="art-hill hill-back"></div>
+          <div class="art-hill hill-front"></div>
+          <div class="art-star star-one">✦</div>
+          <div class="art-star star-two">✧</div>
+        </div>
+      </section>
+
+      <section class="summary-grid" aria-label="Resumo do dia">
+        <article class="summary-card summary-primary">
+          <div class="summary-icon" aria-hidden="true">✓</div>
+          <div class="summary-info">
+            <p>Tarefas cadastradas</p>
+            <strong id="summary-task-count">0</strong>
+            <span>Organize suas prioridades</span>
+          </div>
+          <div class="summary-decoration" aria-hidden="true">↗</div>
+        </article>
+        <article class="summary-card">
+          <div class="summary-icon weather-mini" aria-hidden="true">☀</div>
+          <div class="summary-info">
+            <p>Clima do momento</p>
+            <strong id="summary-weather">Consulte agora</strong>
+            <span id="summary-location">Escolha sua cidade</span>
+          </div>
+          <span class="summary-decoration weather-decoration" aria-hidden="true">✦</span>
+        </article>
+        <article class="summary-card">
+          <div class="summary-icon calendar-mini" aria-hidden="true">▦</div>
+          <div class="summary-info">
+            <p>Hoje é</p>
+            <strong id="current-date-short">—</strong>
+            <span id="current-date">Um novo dia para começar</span>
+          </div>
+        </article>
+      </section>
+
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">SEU DIA, DO SEU JEITO</p>
+          <h2>Seu espaço de trabalho</h2>
+        </div>
+        <span class="section-note">Tudo em um só lugar <span aria-hidden="true">✦</span></span>
+      </div>
+
+      <div class="dashboard-grid">
+        <section id="tarefas" class="panel tasks-panel" aria-labelledby="tasks-title">
+          <div class="panel-heading">
+            <div class="panel-title-group">
+              <span class="panel-icon task-icon" aria-hidden="true">☷</span>
+              <div>
+                <p class="panel-kicker">PRODUTIVIDADE</p>
+                <h2 id="tasks-title">Minhas tarefas</h2>
+              </div>
+            </div>
+            <span id="task-count" class="count-badge" aria-label="Quantidade de tarefas">0</span>
+          </div>
+
+          <p class="panel-description">Anote o que precisa ser feito e avance no seu ritmo.</p>
+
+          <!-- Ponto de integração do colega responsável pela To-Do List.
+               Preserve task-form, task-input e task-list para compatibilidade. -->
+          <form id="task-form" class="task-form">
+            <label class="sr-only" for="task-input">Nova tarefa</label>
+            <span class="input-plus" aria-hidden="true">＋</span>
+            <input id="task-input" name="task" type="text" placeholder="Adicione uma nova tarefa..." maxlength="160" autocomplete="off">
+            <button type="submit" class="primary-button">Adicionar <span aria-hidden="true">↗</span></button>
+          </form>
+
+          <div class="task-list-header">
+            <span>LISTA DE HOJE</span>
+            <span class="task-list-hint">Um passo de cada vez</span>
+          </div>
+          <ul id="task-list" class="task-list" aria-live="polite">
+            <!-- As tarefas serão inseridas dinamicamente pelo script de To-Do List. -->
+          </ul>
+          <div id="task-empty-state" class="empty-state">
+            <span class="empty-icon" aria-hidden="true">✧</span>
+            <strong>Tudo começa com a primeira tarefa</strong>
+            <span>Adicione uma tarefa acima para organizar seu dia.</span>
+          </div>
+        </section>
+
+        <section id="clima" class="panel weather-panel" aria-labelledby="weather-title">
+          <div class="panel-heading">
+            <div class="panel-title-group">
+              <span class="panel-icon climate-icon" aria-hidden="true">☼</span>
+              <div>
+                <p class="panel-kicker">CONDIÇÕES ATUAIS</p>
+                <h2 id="weather-title">Clima agora</h2>
+              </div>
+            </div>
+            <span class="live-label"><span class="live-dot"></span> AO VIVO</span>
+          </div>
+
+          <form id="weather-form" class="weather-form">
+            <label class="sr-only" for="weather-city">Pesquisar cidade</label>
+            <div class="weather-search">
+              <span aria-hidden="true">⌕</span>
+              <input id="weather-city" name="city" type="text" value="Porto Velho" placeholder="Buscar cidade..." required maxlength="100" autocomplete="off">
+              <button id="weather-search-button" type="submit" aria-label="Buscar clima da cidade">Buscar</button>
+            </div>
+          </form>
+
+          <div id="weather-status" class="status-message" role="status" aria-live="polite">
+            Preparando consulta do clima...
+          </div>
+
+          <div id="weather-data" class="weather-data" hidden>
+            <div class="weather-hero">
+              <div>
+                <p id="weather-location" class="weather-location">—</p>
+                <p id="weather-temperature" class="weather-temperature">—°</p>
+                <p id="weather-description" class="weather-description">—</p>
+              </div>
+              <div class="weather-illustration" aria-hidden="true">
+                <span class="weather-symbol">☀️</span>
+                <span class="weather-cloud">☁</span>
+              </div>
+            </div>
+
+            <div class="weather-details">
+              <div class="weather-detail">
+                <span class="detail-icon" aria-hidden="true">♨</span>
+                <div><span>Sensação térmica</span><strong id="weather-apparent-temperature">—</strong></div>
+              </div>
+              <div class="weather-detail">
+                <span class="detail-icon humidity-icon" aria-hidden="true">◌</span>
+                <div><span>Umidade</span><strong id="weather-humidity">—</strong></div>
+              </div>
+              <div class="weather-detail">
+                <span class="detail-icon wind-icon" aria-hidden="true">≋</span>
+                <div><span>Velocidade do vento</span><strong id="weather-wind">—</strong></div>
+              </div>
+            </div>
+            <p id="weather-updated" class="weather-updated"></p>
+          </div>
+
+          <div class="weather-footer">
+            <span class="weather-footer-icon" aria-hidden="true">✦</span>
+            <span>Planeje seu dia com mais tranquilidade.</span>
+            <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Fonte dos dados ↗</a>
+          </div>
+        </section>
+      </div>
+
+      <!-- Espaço reservado para novos componentes que forem definidos pela equipe. -->
+      <section id="outros-componentes" class="additional-section" aria-label="Componentes adicionais"></section>
+
+      <footer class="site-footer">
+        <a class="footer-brand" href="#inicio">NEXUS<span>.</span></a>
+        <p>Feito para ajudar você a encontrar seu ritmo.</p>
+        <span>HTML · CSS · JavaScript</span>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
