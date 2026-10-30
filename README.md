@@ -2,66 +2,58 @@
 
 ## Sobre o projeto
 
-O **Nexus-Dashboard** é uma aplicação web interativa desenvolvida para facilitar a organização de tarefas, o acompanhamento da produtividade e a consulta de informações meteorológicas em um único ambiente.
+O **Nexus-Dashboard** é uma aplicação web interativa para organizar tarefas, acompanhar a produtividade e consultar o clima de qualquer cidade em um único painel.
 
-O projeto foi desenvolvido utilizando **HTML5, CSS3 e JavaScript**, com foco em uma interface moderna, intuitiva e responsiva.
-
-Seu principal objetivo é oferecer uma ferramenta prática para o gerenciamento de atividades diárias, permitindo que o usuário organize compromissos, acompanhe tarefas, registre anotações e consulte o clima de diferentes cidades.
+Foi desenvolvido com **HTML5, CSS3 e JavaScript**, com foco em uma interface moderna, intuitiva e responsiva, sem necessidade de back-end.
 
 ## Funcionalidades
 
-**Gerenciamento de tarefas**
-- Adicionar tarefas pelo formulário.
-- Marcar atividades como concluídas ou pendentes.
-- Excluir tarefas.
-- Filtrar tarefas por todas, pendentes e concluídas.
-- Salvar tarefas automaticamente no LocalStorage.
-- Definir prioridades e categorias.
-- Estabelecer prazos.
-- Filtrar tarefas pendentes e concluídas.
-- Acompanhar indicadores de produtividade em tempo real.
-- Visualizar percentual de conclusão, total de tarefas, tarefas concluídas e pendentes.
-- Consultar gráficos de progresso atualizados automaticamente.
+**Minhas tarefas**
+- Adicionar tarefas com nome, data e horário (data e horário são opcionais).
+- Tarefas organizadas automaticamente por data e horário.
+- Marcar tarefas como concluídas ou pendentes e excluí-las.
+- Filtrar a lista por **Todas**, **Pendentes** e **Concluídas**.
+- Salvar as tarefas automaticamente no navegador (`localStorage`).
 
-**Consulta meteorológica**
-- Pesquisar o clima de diferentes cidades.
-- Consultar temperatura e sensação térmica.
-- Visualizar umidade e velocidade do vento.
-- Obter informações por meio da API Open-Meteo.
+**Visão da produtividade**
+- Percentual de conclusão em gráfico circular.
+- Total de tarefas, concluídas e pendentes.
+- Gráfico de barras de atividades, atualizado em tempo real.
 
-**Organização pessoal**
-- Criar e salvar anotações rápidas.
-- Acompanhar o progresso das atividades.
-- Armazenar informações localmente no navegador.
+**Clima**
+- Pesquisa do clima de qualquer cidade (padrão: Porto Velho).
+- Temperatura, descrição do tempo, sensação térmica, umidade e velocidade do vento.
+- Previsão dos próximos 5 dias, com chance de chuva e temperaturas máxima e mínima.
+- Dados fornecidos pela API gratuita [Open-Meteo](https://open-meteo.com/).
 
 **Interface**
-- Design moderno e responsivo.
-- Alternância entre tema claro e escuro.
-- Atualização dinâmica das informações.
-- Organização visual para facilitar a navegação.
+- Painel de resumo com tarefas, clima e data do dia.
+- Alternância entre tema claro e escuro, com a preferência salva.
+- Layout responsivo para computador e celular.
 
 ## Tecnologias utilizadas
 
 | Tecnologia | Finalidade |
 |---|---|
 | HTML5 | Estrutura da aplicação |
-| CSS3 | Estilização e responsividade |
+| CSS3 | Estilização, temas e responsividade |
 | JavaScript ES6+ | Funcionalidades e interatividade |
 | Fetch API | Requisições HTTP |
-| Open-Meteo API | Informações meteorológicas |
-| LocalStorage | Armazenamento local |
+| Open-Meteo API | Clima atual e previsão |
+| LocalStorage | Armazenamento local de tarefas e tema |
 | Git e GitHub | Versionamento do projeto |
 
 ## Estrutura do projeto
 
 ```text
-nexus-dashboard-main/
+Nexus-Dashboard/
 ├── css/
-│   └── style.css
+│   └── style.css      # Estilos, tema claro/escuro e responsividade
 ├── js/
-│   ├── main.js
-│   └── weather.js
-├── index.html
+│   ├── main.js        # Tarefas, filtros, produtividade e tema
+│   └── weather.js     # Clima e previsão (Open-Meteo)
+├── index.html         # Página principal
+├── LICENSE
 ├── README.md
 └── .gitignore
 ```
@@ -79,9 +71,9 @@ nexus-dashboard-main/
 
 O sistema utiliza JavaScript para controlar as interações do usuário, atualizar os elementos da página e gerenciar as informações das tarefas.
 
-Os dados pessoais do dashboard são armazenados no navegador por meio do `localStorage`, permitindo que sejam recuperados posteriormente no mesmo navegador.
+As tarefas e a preferência de tema são armazenadas no navegador por meio do `localStorage`, permitindo que sejam recuperadas posteriormente no mesmo navegador.
 
-A funcionalidade meteorológica utiliza a API pública Open-Meteo para consultar informações climáticas de diferentes localidades.
+A funcionalidade meteorológica utiliza a API pública Open-Meteo para buscar a cidade e consultar o clima atual e a previsão dos próximos dias.
 
 A aplicação funciona diretamente no navegador, sem necessidade de um servidor back-end próprio.
 
